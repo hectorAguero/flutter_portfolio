@@ -65,6 +65,7 @@ dev_dependencies:
   custom_lint: ^0.2.5
   riverpod_lint: ^1.0.1
   flutter_native_splash: ^2.2.18
+  icons_launcher: ^2.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -81,3 +82,31 @@ flutter_native_splash:
   image: assets/logo_lockup_flutter_vertical.png
   color_dark: "#042a49"
   image_dark: assets/logo_lockup_flutter_vertical_wht.png
+  web: false
+
+icons_launcher:
+  image_path: "assets/icon/ic_logo_border.png"
+  platforms:
+    android:
+      enable: true
+      image_path: "assets/icon/ic_logo_border.png"
+      adaptive_background_color: "#ffffff"
+      adaptive_foreground_image: "assets/icon/ic_foreground.png"
+      adaptive_round_image: "assets/icon/ic_logo_round.png"
+      adaptive_monochrome_image: "assets/icon/ic_logo_monochrome.png"
+    ios:
+      enable: true
+      image_path: "assets/icon/ic_logo_rectangle.png"
+    web:
+      enable: true
+      image_path: "assets/icon/ic_logo_border.png"
+      favicon_path: "assets/icon/ic_logo_round.png"
+    macos:
+      enable: false
+      image_path: "assets/icon/ic_logo_border.png"
+    windows:
+      enable: false
+      image_path: "assets/icon/ic_logo_border.png"
+    linux:
+      enable: false
+      image_path: "assets/icon/ic_logo_border.png"

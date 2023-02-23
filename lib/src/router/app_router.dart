@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_portfolio/src/error/not_found_page.dart';
 import 'package:flutter_portfolio/src/features/home/about_me/about_me_page.dart';
 import 'package:flutter_portfolio/src/features/home/contact/contact_page.dart';
 import 'package:flutter_portfolio/src/features/home/home_page.dart';
@@ -27,8 +28,17 @@ final goRouterProvider = Provider<GoRouter>(
   (ref) {
     return GoRouter(
       initialLocation: AppRoutes.aboutme.tabname,
+      redirect: (context, state) {
+        if (state.location.isEmpty &&
+            state.extra.toString() == 'not_found_page') {
+          return AppRoutes.aboutme.tabname;
+        }
+        return null;
+      },
       navigatorKey: _rootNavigatorKey,
       debugLogDiagnostics: true,
+      errorBuilder: (BuildContext context, GoRouterState state) =>
+          NotFoundPage(state.error!),
       routes: [
         ShellRoute(
           navigatorKey: _shellNavigatorKey,

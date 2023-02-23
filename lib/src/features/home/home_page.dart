@@ -30,6 +30,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     ref.listen(homeControllerProvider, (_, index) {
       GoRouter.of(context).goNamed(AppRoutes.values[index].name);
     });
+    final title = _destinations[ref.watch(homeControllerProvider)].label;
     return Scaffold(
       appBar: context.isMobile
           ? AppBar(
@@ -37,6 +38,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
                 child: FlutterLogo(),
               ),
+              title: Text(title),
               actions: [
                 IconButton(
                   color: themeMode == ThemeMode.system

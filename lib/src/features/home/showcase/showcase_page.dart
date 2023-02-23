@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/src/features/home/showcase/showcase_controller.dart';
 import 'package:flutter_portfolio/src/features/home/showcase/widgets/selected_feature.dart';
@@ -40,26 +39,22 @@ class ShowcasePage extends ConsumerWidget {
                       feature?.title ?? 'Not Implemented',
                       maxLines: 1,
                       overflow: TextOverflow.fade,
+                      style: TextStyle(
+                          fontSize: feature != null ? 16 : 12,
+                          fontWeight: feature != null
+                              ? FontWeight.bold
+                              : FontWeight.normal),
                     ),
                     subtitle: Text(
-                      feature?.description ?? 'Not Implemented',
+                      feature?.description ?? '...',
                       maxLines: 1,
                       overflow: TextOverflow.fade,
                     ),
-                    textColor: feature != null
-                        ? Theme.of(context).colorScheme.onSurface
-                        : Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.5),
                     selectedTileColor: Theme.of(context).highlightColor,
                     leading: SizedBox(
                       width: 48,
                       child: CircleAvatar(
                         radius: 24,
-                        backgroundColor: Color(
-                                (math.Random().nextDouble() * 0xFFFFFF).toInt())
-                            .withOpacity(1.0),
                         child: Text(
                           '${index + 1}',
                         ),
@@ -69,10 +64,12 @@ class ShowcasePage extends ConsumerWidget {
                       ref
                           .read(showcaseControllerProvider.notifier)
                           .setIndex(index);
-                      if (context.isMobile) {
+                      if (context.isMobile && feature != null) {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Scaffold(
-                                appBar: AppBar(),
+                                appBar: AppBar(
+                                  title: Text(feature.title),
+                                ),
                                 body: const SelectedFeaturePage())));
                       }
                     },
